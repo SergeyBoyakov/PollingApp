@@ -2,6 +2,8 @@ package com.example.polls.features.security.config
 
 import com.example.polls.features.security.CustomUserDetailsService
 import com.example.polls.features.security.JwtAuthenticationEntryPoint
+import com.example.polls.features.security.JwtAuthenticationFilter
+import com.example.polls.features.security.JwtTokenProvider
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
@@ -28,9 +30,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 )
 class SecurityConfig(
     val customUserDetailsService: CustomUserDetailsService, // provides loadUserByUsername() -> UserDetails e.g. custom UserPrincipal
-    val unauthorizedHandler: JwtAuthenticationEntryPoint // is used to return 401 unauthorized to clients that try to access a protected resource wo proper authentication
+    val unauthorizedHandler: JwtAuthenticationEntryPoint, // is used to return 401 unauthorized to clients that try to access a protected resource wo proper authentication
+    val tokenProvider: JwtTokenProvider
 ) : WebSecurityConfigurerAdapter() { // provides default security configurations and allows other class ot extend it and customize by override
-
     /*
     * reads JWT authentication token from the Authorization header for all requests
     * validates the token
@@ -38,7 +40,7 @@ class SecurityConfig(
     * Sets user details to SpringSecurityContext -> Spring Security uses details for authorization checks.
     */
     @Bean
-    fun jwtAuthenticationFilter() = JwtAuthenticationFilter()
+    fun jwtAuthenticationFilter() = JwtAuthenticationFilter(tokenProvider, customUserDetailsService)
 
     override
     fun configure(authenticationManagerBuilder: AuthenticationManagerBuilder) {

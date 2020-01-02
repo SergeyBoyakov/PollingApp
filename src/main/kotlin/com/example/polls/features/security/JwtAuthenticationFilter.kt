@@ -19,8 +19,8 @@ import javax.servlet.http.HttpServletResponse
 * pass it to spring security
  */
 class JwtAuthenticationFilter(
-    val jwtTokenProvider: JwtTokenProvider,
-    val customUserDetailsService: CustomUserDetailsService
+    private val jwtTokenProvider: JwtTokenProvider,
+    private val customUserDetailsService: CustomUserDetailsService
 ) : OncePerRequestFilter() {
     private val log: Logger = LoggerFactory.getLogger(JwtAuthenticationFilter::class.java)
 
