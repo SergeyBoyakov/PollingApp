@@ -1,5 +1,7 @@
 package com.example.polls.features.security.config
 
+import com.example.polls.features.security.CustomUserDetailsService
+import com.example.polls.features.security.JwtAuthenticationEntryPoint
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
@@ -25,8 +27,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 // e.g. @PreAuthorize("isAnonymous()") @PreAuthorize("hasRole('USER')")
 )
 class SecurityConfig(
-    customUserDetailsService: CustomUserDetailsService, // provides loadUserByUsername() -> UserDetails e.g. custom UserPrincipal
-    unauthorizedHandler: JwtAuthenticationEntryPoint // is used to return 401 unauthorized to clients that try to access a protected resource wo proper authentication
+    val customUserDetailsService: CustomUserDetailsService, // provides loadUserByUsername() -> UserDetails e.g. custom UserPrincipal
+    val unauthorizedHandler: JwtAuthenticationEntryPoint // is used to return 401 unauthorized to clients that try to access a protected resource wo proper authentication
 ) : WebSecurityConfigurerAdapter() { // provides default security configurations and allows other class ot extend it and customize by override
 
     /*
@@ -40,7 +42,7 @@ class SecurityConfig(
 
     override
     fun configure(authenticationManagerBuilder: AuthenticationManagerBuilder) {
-        return authenticationManagerBuilder
+        authenticationManagerBuilder
             .userDetailsService(customUserDetailsService)
             .passwordEncoder(passwordEncoder())
     }

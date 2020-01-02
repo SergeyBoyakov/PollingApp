@@ -1,4 +1,4 @@
-package com.example.polls.features.security.config
+package com.example.polls.features.security
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

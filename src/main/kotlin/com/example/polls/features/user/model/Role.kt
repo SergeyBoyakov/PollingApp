@@ -13,10 +13,9 @@ class Role() {
     @Enumerated(EnumType.STRING)
     @NaturalId
     @Column(length = 60)
-    private var name: RoleName? = null
+    var name: RoleName? = null
 
     constructor(name: RoleName) : this() {
         this.name = name
     }
-
 }
