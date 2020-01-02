@@ -12,7 +12,11 @@ import javax.validation.constraints.Size
         UniqueConstraint(columnNames = ["username"]),
         UniqueConstraint(columnNames = ["email"])]
 )
-class User(@Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Long) : DateAudit() {
+class User() : DateAudit() {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long? = null
+
     @NotBlank
     @Size(max = 40)
     var name: String? = null
