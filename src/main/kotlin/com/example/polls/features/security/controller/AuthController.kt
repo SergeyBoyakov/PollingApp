@@ -6,11 +6,10 @@ import com.example.polls.features.user.model.RoleName
 import com.example.polls.features.user.model.User
 import com.example.polls.features.user.repository.RoleRepository
 import com.example.polls.features.user.repository.UserRepository
-import com.example.polls.payloads.ApiResponse
-import com.example.polls.payloads.JwtAuthenticationResponse
-import com.example.polls.payloads.LoginRequest
-import com.example.polls.payloads.SignUpRequest
-import org.springframework.http.HttpStatus
+import com.example.polls.features.security.payloads.ApiResponse
+import com.example.polls.features.security.payloads.JwtAuthenticationResponse
+import com.example.polls.features.security.payloads.LoginRequest
+import com.example.polls.features.security.payloads.SignUpRequest
 import org.springframework.http.ResponseEntity
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken

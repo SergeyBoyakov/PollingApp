@@ -1,4 +1,4 @@
-package com.example.polls.payloads
+package com.example.polls.features.security.payloads
 
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotBlank
