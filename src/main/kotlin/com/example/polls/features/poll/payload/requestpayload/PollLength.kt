@@ -6,9 +6,9 @@ import javax.validation.constraints.NotNull
 class PollLength {
     @NotNull
     @Max(7)
-    var days: Int? = null
+    var days: Int = 0
 
     @NotNull
     @Max(23)
-    var hours: Int? = null
+    var hours: Int = 0
 }

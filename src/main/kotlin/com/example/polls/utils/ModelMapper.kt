@@ -11,7 +11,7 @@ import java.time.Instant
 @Service
 class ModelMapper {
 
-    fun mapPollToPollResponse(poll: Poll, choiceVotes: Map<Long, Long>, creator: User, userVote: Long): PollResponse {
+    fun mapPollToPollResponse(poll: Poll, choiceVotes: Map<Long, Long>, creator: User?, userVote: Long?): PollResponse {
         return PollResponse().apply {
             id = poll.id
             question = poll.question
@@ -19,7 +19,7 @@ class ModelMapper {
             expirationDateTime = poll.expirationDateTime
             isExpired = poll.expirationDateTime.isBefore(Instant.now())
             choices = getChoicesFrom(poll, choiceVotes)
-            createdBy = UserSummary(creator.id, creator.username, creator.name)
+            createdBy = UserSummary(creator?.id, creator?.username, creator?.name)
             selectedChoice = userVote
             totalVotes = getTotalVotesFrom(choices!!)
         }

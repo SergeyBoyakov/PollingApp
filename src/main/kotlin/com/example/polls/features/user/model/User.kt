@@ -19,20 +19,20 @@ class User() : DateAudit() {
 
     @NotBlank
     @Size(max = 40)
-    var name: String? = null
+    lateinit var name: String
 
     @NotBlank
     @Size(max = 15)
-    var username: String? = null
+    lateinit var username: String
 
     @NaturalId
     @NotBlank
     @Size(max = 40)
-    var email: String? = null
+    lateinit var email: String
 
     @NotBlank
     @Size(max = 100)
-    var password: String? = null
+    lateinit var password: String
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
